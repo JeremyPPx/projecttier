@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TierTreu - Deine Premium Haustierversicherung</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="app.navigate('home')">
+                <i class="fa-solid fa-paw"></i>
+                <span>TierTreu</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" onclick="app.navigate('home'); return false;">Home</a>
+                <a href="#" onclick="app.navigate('calculator'); return false;">Tarifrechner</a>
+                <a href="#" class="active" onclick="app.navigate('dashboard'); return false;">Verwaltung</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-secondary" onclick="app.navigate('dashboard')">Login</button>
+                <button class="btn btn-primary" onclick="app.navigate('calculator')">Tarif berechnen</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="app-root">
+        <!-- Views will be injected here by app.js -->
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fa-solid fa-paw"></i>
+                    <span>TierTreu</span>
+                </div>
+                <p>Weil dein bester Freund nur das Beste verdient. Premium Schutz für Hunde und Katzen.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Produkte</h3>
+                <ul>
+                    <li><a href="#">Hundeversicherung</a></li>
+                    <li><a href="#">Katzenversicherung</a></li>
+                    <li><a href="#">OP-Schutz</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Unternehmen</h3>
+                <ul>
+                    <li><a href="#">Über uns</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="#">Karriere</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TierTreu Versicherungen. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
