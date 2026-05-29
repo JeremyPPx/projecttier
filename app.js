@@ -89,7 +89,7 @@ const app = {
         
         // Format date to DD.MM.YYYY
         const [year, month, day] = date.split('-');
-        const formattedDate = \`\${day}.\${month}.\${year}\`;
+        const formattedDate = `${day}.${month}.${year}`;
 
         this.state.userPets[0].health.history.unshift({
             id: Date.now(),
@@ -103,7 +103,7 @@ const app = {
     // --- Views ---
 
     views: {
-        home: () => \`
+        home: () => `
             <section class="hero view-section active">
                 <div class="hero-content">
                     <h1>Alle Dokumente an einem Ort.</h1>
@@ -167,27 +167,27 @@ const app = {
                     </div>
                 </div>
             </section>
-        \`,
+        `,
 
         dashboard: () => {
             const pet = app.state.userPets[0];
             
-            return \`
+            return `
             <div class="container view-section active dashboard">
                 <div class="dashboard-header">
                     <div>
                         <h2>Tier-Management</h2>
-                        <p style="color: var(--text-muted)">Akte für \${pet.name} verwalten.</p>
+                        <p style="color: var(--text-muted)">Akte für ${pet.name} verwalten.</p>
                     </div>
                 </div>
 
                 <div class="dashboard-grid">
                     <aside class="pet-sidebar">
                         <div class="pet-card">
-                            <img src="\${pet.avatar}" alt="\${pet.name}" class="pet-avatar">
+                            <img src="${pet.avatar}" alt="${pet.name}" class="pet-avatar">
                             <div class="pet-info">
-                                <h3>\${pet.name}</h3>
-                                <p>\${pet.breed} • \${pet.age} Jahre</p>
+                                <h3>${pet.name}</h3>
+                                <p>${pet.breed} • ${pet.age} Jahre</p>
                             </div>
                         </div>
 
@@ -197,13 +197,13 @@ const app = {
                                 <h3>Versicherungen</h3>
                             </div>
                             <div class="data-list">
-                                \${pet.insurances.map(ins => \`
+                                ${pet.insurances.map(ins => `
                                     <div class="data-item card-style">
-                                        <div style="font-weight: 600; color: var(--primary)">\${ins.provider}</div>
-                                        <div style="font-size: 0.85rem; color: var(--text-muted)">\${ins.type}</div>
-                                        <div style="font-size: 0.85rem; margin-top: 0.25rem;">Police: \${ins.policyNumber}</div>
+                                        <div style="font-weight: 600; color: var(--primary)">${ins.provider}</div>
+                                        <div style="font-size: 0.85rem; color: var(--text-muted)">${ins.type}</div>
+                                        <div style="font-size: 0.85rem; margin-top: 0.25rem;">Police: ${ins.policyNumber}</div>
                                     </div>
-                                \`).join('')}
+                                `).join('')}
                             </div>
                             
                             <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem;">Hinzufügen</h4>
@@ -225,7 +225,7 @@ const app = {
                                     <h3>Allergien & Unverträglichkeiten</h3>
                                 </div>
                                 <div class="pill-container" style="margin-bottom: 1.5rem;">
-                                    \${pet.health.allergies.map(alg => \`<span class="pill">\${alg}</span>\`).join('')}
+                                    ${pet.health.allergies.map(alg => `<span class="pill">${alg}</span>`).join('')}
                                 </div>
                                 <form onsubmit="app.addAllergy(event)" style="display: flex; gap: 0.5rem;">
                                     <input type="text" id="allergy-input" class="form-control form-sm" placeholder="Neue Allergie" required>
@@ -238,15 +238,15 @@ const app = {
                                     <h3>Impfungen</h3>
                                 </div>
                                 <div class="data-list">
-                                    \${pet.health.vaccinations.map(vac => \`
+                                    ${pet.health.vaccinations.map(vac => `
                                         <div class="data-item card-style">
-                                            <div style="font-weight: 600;">\${vac.name}</div>
+                                            <div style="font-weight: 600;">${vac.name}</div>
                                             <div style="display:flex; justify-content:space-between; font-size: 0.85rem; color: var(--text-muted); margin-top:0.25rem;">
-                                                <span>Geimpft: \${vac.date}</span>
-                                                <span style="color: var(--accent); font-weight: 600;">Fällig: \${vac.nextDue}</span>
+                                                <span>Geimpft: ${vac.date}</span>
+                                                <span style="color: var(--accent); font-weight: 600;">Fällig: ${vac.nextDue}</span>
                                             </div>
                                         </div>
-                                    \`).join('')}
+                                    `).join('')}
                                 </div>
                             </div>
                         </div>
@@ -265,22 +265,22 @@ const app = {
                             </form>
 
                             <div class="timeline">
-                                \${pet.health.history.map(hist => \`
+                                ${pet.health.history.map(hist => `
                                     <div class="timeline-item">
                                         <div class="timeline-dot"></div>
-                                        <div class="timeline-date">\${hist.date}</div>
+                                        <div class="timeline-date">${hist.date}</div>
                                         <div class="timeline-content card-style">
-                                            <h4>\${hist.title}</h4>
-                                            <p>\${hist.description}</p>
+                                            <h4>${hist.title}</h4>
+                                            <p>${hist.description}</p>
                                         </div>
                                     </div>
-                                \`).join('')}
+                                `).join('')}
                             </div>
                         </div>
                     </main>
                 </div>
             </div>
-            \`;
+            `;
         }
     }
 };
