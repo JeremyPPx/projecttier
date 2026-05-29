@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TierTreu - Deine digitale Haustierakte</title>
+    <title>TierTreu – Alles für dein Tier. An einem Ort.</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,33 +17,55 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo" onclick="app.navigate('home')">
-                <i class="fa-solid fa-paw"></i>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TierTreu Logo">
+                    <path d="M16 3L4 9V17C4 23.075 9.333 28.725 16 30C22.667 28.725 28 23.075 28 17V9L16 3Z" fill="#1b3d2f"/>
+                    <ellipse cx="11" cy="13" rx="2.5" ry="3" fill="white" opacity="0.9"/>
+                    <ellipse cx="21" cy="13" rx="2.5" ry="3" fill="white" opacity="0.9"/>
+                    <path d="M11 18C11 18 12.5 21 16 21C19.5 21 21 18 21 18" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.9"/>
+                    <circle cx="11" cy="9" r="1.5" fill="#d9745b"/>
+                    <circle cx="21" cy="9" r="1.5" fill="#d9745b"/>
+                    <circle cx="7.5" cy="12" r="1.5" fill="#d9745b"/>
+                    <circle cx="24.5" cy="12" r="1.5" fill="#d9745b"/>
+                </svg>
                 <span>TierTreu</span>
             </div>
             <div class="nav-links">
                 <a href="#" class="active" onclick="app.navigate('home'); return false;">Startseite</a>
                 <a href="#" onclick="app.navigate('dashboard'); return false;">Dashboard</a>
+                <a href="#funktionen" onclick="app.scrollToFeatures(); return false;">Funktionen</a>
             </div>
             <div class="nav-actions">
-                <button class="btn btn-primary" onclick="app.navigate('dashboard')">Zum Dashboard</button>
+                <button class="btn btn-outline" onclick="app.navigate('dashboard')">Demo ansehen</button>
+                <button class="btn btn-primary" onclick="app.scrollToWaitlist()">Warteliste</button>
             </div>
+            <button class="hamburger" onclick="app.toggleMobileMenu()" aria-label="Menü öffnen">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#" onclick="app.navigate('home'); app.closeMobileMenu(); return false;">Startseite</a>
+            <a href="#" onclick="app.navigate('dashboard'); app.closeMobileMenu(); return false;">Dashboard</a>
+            <a href="#" onclick="app.scrollToFeatures(); app.closeMobileMenu(); return false;">Funktionen</a>
+            <a href="#" onclick="app.scrollToWaitlist(); app.closeMobileMenu(); return false;">Warteliste</a>
         </div>
     </nav>
 
     <!-- Main Content Area -->
-    <main id="app-root">
-        <!-- Views will be injected here by app.js -->
-    </main>
+    <main id="app-root"></main>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="logo">
-                    <i class="fa-solid fa-paw"></i>
+                <div class="logo" style="color:white; margin-bottom: 1rem;">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 3L4 9V17C4 23.075 9.333 28.725 16 30C22.667 28.725 28 23.075 28 17V9L16 3Z" fill="white" opacity="0.2"/>
+                        <path d="M16 3L4 9V17C4 23.075 9.333 28.725 16 30C22.667 28.725 28 23.075 28 17V9L16 3Z" stroke="white" stroke-width="1.5" fill="none"/>
+                    </svg>
                     <span>TierTreu</span>
                 </div>
-                <p>Deine zentrale digitale Akte für Haustiere. Verwalte Gesundheit, Versicherungen und Dokumente einfach an einem Ort.</p>
+                <p style="color:#94a3b8; line-height:1.7">Deine zentrale digitale Akte für Haustiere.<br>Gesundheit, Versicherungen und Dokumente<br>einfach an einem Ort.</p>
             </div>
             <div class="footer-links">
                 <h3>Funktionen</h3>
@@ -55,6 +73,7 @@
                     <li><a href="#">Gesundheitsakte</a></li>
                     <li><a href="#">Versicherungsmanagement</a></li>
                     <li><a href="#">Impf-Erinnerungen</a></li>
+                    <li><a href="#">Mehrere Haustiere</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -63,15 +82,15 @@
                     <li><a href="#">Über uns</a></li>
                     <li><a href="#">Kontakt</a></li>
                     <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#">Impressum</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 TierTreu. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2026 TierTreu. Alle Rechte vorbehalten. — Mit ❤️ für Tierbesitzer.</p>
         </div>
     </footer>
 
-    <!-- App Logic -->
     <script src="app.js"></script>
 </body>
 </html>
