@@ -2,3 +2,6 @@ setup-db.js
 setup.sql
 node_modules/
 .env
+.env
+setup-db.js
+setup.sql
