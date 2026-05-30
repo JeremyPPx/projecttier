@@ -55,6 +55,7 @@ const app = {
 
     init() {
         this.renderView();
+        this.refreshWaitlistCount();
     },
 
     navigate(view) {
@@ -195,14 +196,53 @@ const app = {
         this.renderView();
     },
 
-    joinWaitlist(e) {
+    async joinWaitlist(e) {
         e.preventDefault();
-        const email = document.getElementById('waitlist-email').value;
+        const emailInput = document.getElementById('waitlist-email');
+        const email = emailInput.value;
         const btn = e.target.querySelector('button');
-        btn.textContent = '✓ Du bist dabei!';
-        btn.style.background = '#1b3d2f';
-        document.getElementById('waitlist-email').disabled = true;
+        const originalText = btn.textContent;
+
+        btn.textContent = 'Wird eingetragen...';
         btn.disabled = true;
+        emailInput.disabled = true;
+
+        try {
+            const res = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                btn.textContent = '✓ Du bist dabei!';
+                btn.style.background = '#1b3d2f';
+                // Zähler aktualisieren
+                this.refreshWaitlistCount();
+            } else {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                emailInput.disabled = false;
+                alert(data.error || 'Etwas ist schiefgelaufen. Bitte nochmal versuchen.');
+            }
+        } catch (err) {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            emailInput.disabled = false;
+            alert('Verbindungsfehler. Bitte nochmal versuchen.');
+        }
+    },
+
+    async refreshWaitlistCount() {
+        try {
+            const res = await fetch('/api/waitlist/count');
+            const data = await res.json();
+            const countEl = document.getElementById('waitlist-count');
+            if (countEl && data.count !== undefined) {
+                countEl.textContent = data.count;
+            }
+        } catch (e) { /* silent fail */ }
     },
 
     openAddPetModal() {
@@ -267,7 +307,7 @@ const app = {
                             <div class="avatar-circle" style="background:#9b5bd9">K</div>
                             <div class="avatar-circle" style="background:#d9b45b">T</div>
                         </div>
-                        <span><strong>237 Tierhalter</strong> auf der Warteliste</span>
+                        <span><strong><span id="waitlist-count">237</span> Tierhalter</strong> auf der Warteliste</span>
                     </div>
                 </div>
             </section>
